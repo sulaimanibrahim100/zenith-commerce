@@ -1,16 +1,17 @@
-import { MapPin } from 'lucide-react';
+import { MapPin, ChevronDown } from 'lucide-react';
 
 const DeliveryLocation = () => {
   return (
-    <div className="bg-muted/30 py-2 border-b border-border">
-      <div className="container">
-        <div className="flex items-center gap-2 text-sm">
-          <MapPin className="h-4 w-4 text-primary" />
+    <div className="bg-secondary/50 border-b border-border">
+      <div className="container py-1.5">
+        <button className="flex items-center gap-1.5 text-xs md:text-sm group">
+          <MapPin className="h-3.5 w-3.5 text-primary" />
           <span className="text-muted-foreground">Deliver to</span>
-          <button className="font-medium text-foreground hover:text-primary transition-colors underline underline-offset-2">
+          <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
             Lagos, Nigeria
-          </button>
-        </div>
+          </span>
+          <ChevronDown className="h-3 w-3 text-muted-foreground" />
+        </button>
       </div>
     </div>
   );
