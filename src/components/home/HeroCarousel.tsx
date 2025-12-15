@@ -6,90 +6,115 @@ import { Link } from 'react-router-dom';
 const slides = [
   {
     id: 1,
-    title: 'Flash Sale!',
-    subtitle: 'Up to 50% OFF on Electronics',
-    cta: 'Shop Now',
-    link: '/products?category=electronics',
-    bg: 'from-primary to-primary-dark',
-    image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800',
+    title: 'MacBook Pro M3',
+    subtitle: 'Power meets performance',
+    description: 'Up to 30% OFF on selected models',
+    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800',
+    link: '/products?category=laptops',
+    bgColor: 'bg-gradient-to-r from-slate-900 to-slate-700',
   },
   {
     id: 2,
-    title: 'New Arrivals',
-    subtitle: 'Latest Smartphones & Gadgets',
-    cta: 'Explore',
+    title: 'iPhone 15 Pro Max',
+    subtitle: 'Titanium. So strong. So light.',
+    description: 'Now available - Best prices guaranteed',
+    image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800',
     link: '/products?category=phones',
-    bg: 'from-primary-dark to-primary',
-    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800',
+    bgColor: 'bg-gradient-to-r from-purple-900 to-purple-700',
   },
   {
     id: 3,
-    title: 'Fashion Week',
-    subtitle: 'Trending Styles at Amazing Prices',
-    cta: 'Shop Fashion',
-    link: '/products?category=fashion',
-    bg: 'from-primary to-primary-light',
-    image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800',
+    title: 'Gaming Setup',
+    subtitle: 'Level up your game',
+    description: 'PS5, Xbox & Gaming Laptops',
+    image: 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800',
+    link: '/products?category=gaming',
+    bgColor: 'bg-gradient-to-r from-blue-900 to-blue-700',
+  },
+  {
+    id: 4,
+    title: 'Home Office',
+    subtitle: 'Work from anywhere',
+    description: 'Monitors, Keyboards & Accessories',
+    image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800',
+    link: '/products?category=monitors',
+    bgColor: 'bg-gradient-to-r from-emerald-900 to-emerald-700',
   },
 ];
 
 const HeroCarousel = () => {
-  const [current, setCurrent] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
-    return () => clearInterval(timer);
+    return () => clearInterval(interval);
   }, []);
 
-  const goToSlide = (index: number) => setCurrent(index);
-  const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
-  const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
+  const goToSlide = (index: number) => setCurrentSlide(index);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
 
   return (
-    <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden rounded-2xl">
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-            index === current ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'
-          }`}
-        >
-          <div className={`relative h-full bg-gradient-to-r ${slide.bg}`}>
-            <img
-              src={slide.image}
-              alt={slide.title}
-              className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-30"
-            />
-            <div className="relative h-full flex items-center">
-              <div className="container">
-                <div className="max-w-lg text-primary-foreground animate-fade-in-up">
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2">{slide.title}</h2>
-                  <p className="text-lg sm:text-xl mb-6 opacity-90">{slide.subtitle}</p>
-                  <Button asChild size="lg" variant="secondary" className="font-semibold">
-                    <Link to={slide.link}>{slide.cta}</Link>
-                  </Button>
+    <div className="relative overflow-hidden rounded-xl">
+      <div
+        className="flex transition-transform duration-500 ease-out"
+        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+      >
+        {slides.map((slide) => (
+          <div
+            key={slide.id}
+            className={`min-w-full ${slide.bgColor}`}
+          >
+            <div className="relative h-[200px] sm:h-[280px] md:h-[350px] lg:h-[400px]">
+              <div className="absolute inset-0 flex items-center">
+                <div className="container">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div className="text-white space-y-2 md:space-y-4 p-4 md:p-0">
+                      <p className="text-sm md:text-base text-white/80">{slide.subtitle}</p>
+                      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+                        {slide.title}
+                      </h2>
+                      <p className="text-base md:text-lg text-white/90">{slide.description}</p>
+                      <Link to={slide.link}>
+                        <Button className="mt-2 md:mt-4 bg-white text-foreground hover:bg-white/90 font-semibold">
+                          Shop Now
+                        </Button>
+                      </Link>
+                    </div>
+                    <div className="hidden md:flex justify-center">
+                      <img
+                        src={slide.image}
+                        alt={slide.title}
+                        className="max-h-[300px] lg:max-h-[350px] object-contain drop-shadow-2xl"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
       {/* Navigation arrows */}
-      <button
+      <Button
+        variant="ghost"
+        size="icon"
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full"
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-background/20 backdrop-blur-sm rounded-full text-primary-foreground hover:bg-background/40 transition-colors"
       >
         <ChevronLeft className="h-6 w-6" />
-      </button>
-      <button
+      </Button>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full"
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-background/20 backdrop-blur-sm rounded-full text-primary-foreground hover:bg-background/40 transition-colors"
       >
         <ChevronRight className="h-6 w-6" />
-      </button>
+      </Button>
 
       {/* Dots */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
@@ -97,8 +122,8 @@ const HeroCarousel = () => {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              index === current ? 'bg-primary-foreground w-6' : 'bg-primary-foreground/50'
+            className={`w-2.5 h-2.5 rounded-full transition-all ${
+              index === currentSlide ? 'bg-white w-6' : 'bg-white/50'
             }`}
           />
         ))}
