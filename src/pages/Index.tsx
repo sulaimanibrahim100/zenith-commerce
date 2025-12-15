@@ -11,7 +11,7 @@ import TopCategories from '@/components/home/TopCategories';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-muted/30">
+    <div className="min-h-screen flex flex-col bg-background">
       {/* Live Banner - Top */}
       <LiveBanner variant="primary" />
       
@@ -25,13 +25,13 @@ const Index = () => {
       <DeliveryLocation />
       
       <main className="flex-1">
-        <div className="container py-4">
+        <div className="container py-3 md:py-4">
           {/* Hero Carousel */}
           <HeroCarousel />
           
           {/* Second Live Banner */}
-          <div className="my-6">
-            <LiveBanner variant="secondary" />
+          <div className="my-4 md:my-6">
+            <LiveBanner variant="secondary" className="rounded-xl" />
           </div>
           
           {/* Hot Deals */}
@@ -40,7 +40,7 @@ const Index = () => {
           {/* Trending Products */}
           <TrendingProducts />
           
-          {/* Promo Banners (2 side by side) */}
+          {/* Promo Banners */}
           <PromoBanners />
           
           {/* Top Categories */}
