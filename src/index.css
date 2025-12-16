@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,55 +6,55 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 220 20% 10%;
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 10%;
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 10%;
-    --primary: 0 85% 52%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 0 84% 60%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 0 80% 62%;
-    --primary-dark: 0 90% 42%;
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 220 20% 10%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 10% 50%;
-    --accent: 0 75% 96%;
-    --accent-foreground: 0 85% 45%;
+    --primary-light: 0 76% 68%;
+    --primary-dark: 0 90% 45%;
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 0 73% 97%;
+    --accent-foreground: 0 84% 50%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 0 85% 52%;
-    --radius: 0.625rem;
-    --success: 152 82% 39%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 0 84% 60%;
+    --radius: 0.75rem;
+    --success: 142 76% 36%;
     --warning: 38 92% 50%;
     --sale: 24 95% 53%;
   }
 
   .dark {
-    --background: 220 20% 6%;
-    --foreground: 0 0% 98%;
-    --card: 220 20% 10%;
-    --card-foreground: 0 0% 98%;
-    --popover: 220 20% 10%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 85% 58%;
+    --background: 222 47% 6%;
+    --foreground: 210 20% 98%;
+    --card: 222 47% 10%;
+    --card-foreground: 210 20% 98%;
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 0 84% 62%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 0 80% 68%;
-    --primary-dark: 0 90% 48%;
-    --secondary: 220 14% 14%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 220 14% 14%;
-    --muted-foreground: 220 10% 60%;
-    --accent: 0 75% 15%;
+    --primary-light: 0 76% 70%;
+    --primary-dark: 0 90% 50%;
+    --secondary: 222 30% 14%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 222 30% 14%;
+    --muted-foreground: 215 16% 60%;
+    --accent: 0 50% 15%;
     --accent-foreground: 0 80% 70%;
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 13% 18%;
-    --input: 220 13% 18%;
-    --ring: 0 85% 58%;
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 0 84% 62%;
   }
 }
 
@@ -65,12 +65,12 @@
   
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
   }
 }
 
@@ -96,25 +96,29 @@
     @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
   }
   
-  .section-padding {
-    @apply py-6 md:py-8;
+  .section-spacing {
+    @apply py-5 md:py-8;
   }
 }
 
 @layer components {
   .container {
-    @apply px-3 sm:px-4 md:px-6;
+    @apply px-3 sm:px-4 md:px-6 lg:px-8 max-w-7xl mx-auto;
   }
   
   .section-header {
-    @apply flex items-center justify-between mb-4 md:mb-6;
+    @apply flex items-center justify-between mb-4 md:mb-5;
   }
   
   .section-title {
-    @apply text-lg sm:text-xl md:text-2xl font-bold text-foreground;
+    @apply text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-foreground;
   }
   
   .product-grid {
     @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3 md:gap-4;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 hover:border-primary/30;
   }
 }

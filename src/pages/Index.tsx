@@ -8,14 +8,12 @@ import HotDeals from '@/components/home/HotDeals';
 import TrendingProducts from '@/components/home/TrendingProducts';
 import PromoBanners from '@/components/home/PromoBanners';
 import TopCategories from '@/components/home/TopCategories';
+import ShopCarousel from '@/components/home/ShopCarousel';
 
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      {/* Live Banner - Top */}
-      <LiveBanner variant="primary" />
-      
-      {/* Navbar */}
+      {/* Navbar with top bar */}
       <Navbar />
       
       {/* Category Slider */}
@@ -25,13 +23,13 @@ const Index = () => {
       <DeliveryLocation />
       
       <main className="flex-1">
-        <div className="container py-3 md:py-4">
+        <div className="container py-4 md:py-6">
           {/* Hero Carousel */}
           <HeroCarousel />
           
-          {/* Second Live Banner */}
-          <div className="my-4 md:my-6">
-            <LiveBanner variant="secondary" className="rounded-xl" />
+          {/* Live Banner */}
+          <div className="my-5 md:my-8">
+            <LiveBanner variant="primary" className="rounded-xl" />
           </div>
           
           {/* Hot Deals */}
@@ -46,6 +44,9 @@ const Index = () => {
           {/* Top Categories */}
           <TopCategories />
         </div>
+        
+        {/* Shop Carousel - Full width outside container */}
+        <ShopCarousel />
       </main>
       
       <Footer />
