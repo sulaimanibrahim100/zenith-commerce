@@ -6,16 +6,19 @@ import { Button } from '@/components/ui/button';
 
 const HotDeals = () => {
   return (
-    <section className="section-padding">
+    <section className="section-spacing">
       <div className="section-header">
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 bg-primary/10 rounded-lg">
-            <Flame className="h-4 w-4 md:h-5 md:w-5 text-primary" />
+        <div className="flex items-center gap-2.5">
+          <div className="p-2 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl">
+            <Flame className="h-5 w-5 md:h-6 md:w-6 text-primary" />
           </div>
-          <h2 className="section-title">Hot Deals</h2>
+          <div>
+            <h2 className="section-title">Hot Deals</h2>
+            <p className="text-xs text-muted-foreground hidden sm:block">Limited time offers</p>
+          </div>
         </div>
         <Link to="/products">
-          <Button variant="ghost" size="sm" className="gap-1 text-primary hover:text-primary h-8">
+          <Button variant="outline" size="sm" className="gap-1.5 h-9 font-semibold border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground">
             See All
             <ChevronRight className="h-4 w-4" />
           </Button>
