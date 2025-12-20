@@ -6,19 +6,44 @@ interface LiveBannerProps {
 }
 
 const LiveBanner = ({ variant = 'primary', className }: LiveBannerProps) => {
-  const content = variant === 'primary' 
-    ? { text: '🔥 Free Delivery on orders above ₦100,000 • Fast & Secure Payment • 7-Day Returns', bg: 'bg-primary' }
-    : { text: '⚡ Flash Sale Live Now • Up to 50% Off Selected Items • Limited Stock Available', bg: 'bg-foreground' };
+  const isPrimary = variant === 'primary';
+  
+  const messages = isPrimary 
+    ? [
+        '🔥 Free Delivery on orders above ₦100,000',
+        '✨ Fast & Secure Payment',
+        '🛡️ 7-Day Returns Policy',
+        '💯 100% Original Products',
+        '🚚 Nationwide Delivery',
+      ]
+    : [
+        '⚡ Flash Sale Live Now',
+        '🏷️ Up to 50% Off Selected Items',
+        '⏰ Limited Stock Available',
+        '💰 Best Prices Guaranteed',
+        '🎁 Free Gifts on Select Orders',
+      ];
 
   return (
     <div className={cn(
-      content.bg,
-      'text-primary-foreground py-2 px-4 text-center overflow-hidden',
+      isPrimary ? 'bg-primary' : 'bg-foreground',
+      'text-primary-foreground py-2 overflow-hidden',
       className
     )}>
-      <p className="text-xs sm:text-sm font-medium whitespace-nowrap animate-pulse">
-        {content.text}
-      </p>
+      <div className="relative flex">
+        <div className="animate-marquee flex gap-8 whitespace-nowrap">
+          {messages.map((msg, i) => (
+            <span key={i} className="text-xs sm:text-sm font-medium px-4">
+              {msg}
+            </span>
+          ))}
+          {messages.map((msg, i) => (
+            <span key={`dup-${i}`} className="text-xs sm:text-sm font-medium px-4">
+              {msg}
+            </span>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
