@@ -1,19 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const leftSlides = [
-  'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop',
+const leftImages = [
+  'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800',
+  'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800',
+  'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800',
 ];
 
-const rightSlides = [
-  'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1595675024853-0f3ec9098ac7?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1625723044792-44de16ccb4e9?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&h=600&fit=crop',
+const rightImages = [
+  'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800',
+  'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800',
+  'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800',
 ];
 
 const ShopCarousel = () => {
@@ -21,11 +17,11 @@ const ShopCarousel = () => {
   const [rightIndex, setRightIndex] = useState(0);
 
   const nextLeft = useCallback(() => {
-    setLeftIndex((prev) => (prev + 1) % leftSlides.length);
+    setLeftIndex((prev) => (prev + 1) % leftImages.length);
   }, []);
 
   const nextRight = useCallback(() => {
-    setRightIndex((prev) => (prev + 1) % rightSlides.length);
+    setRightIndex((prev) => (prev + 1) % rightImages.length);
   }, []);
 
   useEffect(() => {
@@ -38,65 +34,61 @@ const ShopCarousel = () => {
   }, [nextLeft, nextRight]);
 
   return (
-    <section className="bg-card mt-4 md:mt-6 mx-2 md:mx-4 lg:mx-8 rounded-xl shadow-lg overflow-hidden">
-      {/* Header */}
-      <div className="bg-primary py-3 px-4 flex justify-center items-center">
-        <h2 className="font-bold text-sm sm:text-lg md:text-xl text-primary-foreground">
-          Check Out From Our Shops
-        </h2>
-      </div>
-
-      {/* Carousels Container */}
-      <div className="flex h-[200px] md:h-[340px] gap-2 p-2 md:p-3">
-        {/* Left Carousel */}
-        <div className="relative h-full w-full md:w-1/2 overflow-hidden rounded-lg shadow-md">
-          {leftSlides.map((src, index) => (
-            <img
-              key={index}
-              src={src}
-              alt={`Shop product ${index + 1}`}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-                index === leftIndex ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-          ))}
-          {/* Dots */}
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
-            {leftSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setLeftIndex(index)}
-                className={`h-1.5 rounded-full transition-all ${
-                  index === leftIndex ? 'bg-white w-4' : 'bg-white/50 w-1.5'
-                }`}
-              />
-            ))}
-          </div>
+    <section className="container section-spacing">
+      <div className="bg-card rounded-lg border border-border overflow-hidden">
+        <div className="bg-primary text-primary-foreground py-2.5 px-4 text-center">
+          <h2 className="font-semibold text-sm sm:text-base">Check Out From Our Shops</h2>
         </div>
-
-        {/* Right Carousel - Hidden on mobile */}
-        <div className="hidden md:block relative h-full w-1/2 overflow-hidden rounded-lg shadow-md border border-border">
-          {rightSlides.map((src, index) => (
-            <img
-              key={index}
-              src={src}
-              alt={`Shop product ${index + 6}`}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-                index === rightIndex ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-          ))}
-          {/* Dots */}
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
-            {rightSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setRightIndex(index)}
-                className={`h-1.5 rounded-full transition-all ${
-                  index === rightIndex ? 'bg-white w-4' : 'bg-white/50 w-1.5'
+        
+        <div className="flex gap-2 p-2 sm:p-3 h-[160px] sm:h-[220px] md:h-[280px]">
+          {/* Left carousel */}
+          <div className="flex-1 relative rounded-md overflow-hidden">
+            {leftImages.map((img, i) => (
+              <img
+                key={i}
+                src={img}
+                alt={`Shop ${i + 1}`}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                  i === leftIndex ? 'opacity-100' : 'opacity-0'
                 }`}
               />
             ))}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+              {leftImages.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setLeftIndex(i)}
+                  className={`h-1.5 rounded-full transition-all ${
+                    i === leftIndex ? 'bg-white w-4' : 'bg-white/50 w-1.5'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+          
+          {/* Right carousel - hidden on mobile */}
+          <div className="hidden md:block flex-1 relative rounded-md overflow-hidden">
+            {rightImages.map((img, i) => (
+              <img
+                key={i}
+                src={img}
+                alt={`Shop ${i + 4}`}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                  i === rightIndex ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            ))}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+              {rightImages.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setRightIndex(i)}
+                  className={`h-1.5 rounded-full transition-all ${
+                    i === rightIndex ? 'bg-white w-4' : 'bg-white/50 w-1.5'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

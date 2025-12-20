@@ -8,19 +8,14 @@ const HotDeals = () => {
   return (
     <section className="section-spacing">
       <div className="section-header">
-        <div className="flex items-center gap-2.5">
-          <div className="p-2 bg-gradient-to-br from-primary/20 to-primary/10 rounded-xl">
-            <Flame className="h-5 w-5 md:h-6 md:w-6 text-primary" />
-          </div>
-          <div>
-            <h2 className="section-title">Hot Deals</h2>
-            <p className="text-xs text-muted-foreground hidden sm:block">Limited time offers</p>
-          </div>
+        <div className="flex items-center gap-2">
+          <Flame className="h-5 w-5 text-destructive" />
+          <h2 className="section-title">Hot Deals</h2>
         </div>
-        <Link to="/products">
-          <Button variant="outline" size="sm" className="gap-1.5 h-9 font-semibold border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground">
-            See All
-            <ChevronRight className="h-4 w-4" />
+        <Link to="/products?filter=deals">
+          <Button variant="outline" size="sm" className="gap-1 h-8 text-xs font-medium">
+            View All
+            <ChevronRight className="h-3.5 w-3.5" />
           </Button>
         </Link>
       </div>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Star, ShoppingCart, Heart, Zap } from 'lucide-react';
+import { Star, ShoppingCart, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Product } from '@/types';
 import { useCart } from '@/contexts/CartContext';
@@ -12,63 +12,52 @@ interface ProductCardProps {
 
 const ProductCard = ({ product, variant = 'default' }: ProductCardProps) => {
   const { addToCart } = useCart();
-  const isCompact = variant === 'compact';
 
   return (
-    <div className="group bg-card rounded-xl border border-border overflow-hidden card-hover">
+    <div className="group bg-card rounded-lg border border-border overflow-hidden transition-all duration-200 hover:shadow-md hover:border-border/60">
       <Link to={`/product/${product.id}`} className="block relative">
-        <div className="aspect-square overflow-hidden bg-gradient-to-br from-secondary/50 to-secondary">
+        <div className="aspect-square overflow-hidden bg-secondary/30">
           <img
             src={product.images[0]}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
         </div>
         
-        {/* Badges */}
-        <div className="absolute top-2 left-2 flex flex-col gap-1.5">
-          {product.discount && (
-            <span className="bg-primary text-primary-foreground text-[10px] md:text-xs font-bold px-2 py-1 rounded-md shadow-md">
-              -{product.discount}%
-            </span>
-          )}
-          {product.isFlashSale && (
-            <span className="bg-amber-500 text-white text-[10px] md:text-xs font-bold px-2 py-1 rounded-md flex items-center gap-1 shadow-md">
-              <Zap className="h-3 w-3 fill-current" />
-              Flash
-            </span>
-          )}
-        </div>
+        {/* Discount badge */}
+        {product.discount && (
+          <span className="absolute top-2 left-2 bg-destructive text-destructive-foreground text-[10px] font-semibold px-1.5 py-0.5 rounded">
+            -{product.discount}%
+          </span>
+        )}
         
         {/* Wishlist */}
-        <button className="absolute top-2 right-2 p-2 bg-white/95 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-white shadow-lg">
-          <Heart className="h-4 w-4" />
+        <button className="absolute top-2 right-2 p-1.5 bg-card/90 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-primary hover:text-primary-foreground">
+          <Heart className="h-3.5 w-3.5" />
         </button>
       </Link>
 
-      <div className={`p-3 ${isCompact ? 'p-2.5' : ''}`}>
+      <div className="p-3">
         <Link to={`/product/${product.id}`}>
-          <h3 className="font-semibold text-foreground text-xs md:text-sm line-clamp-2 mb-2 hover:text-primary transition-colors leading-snug min-h-[2.5rem]">
+          <h3 className="font-medium text-foreground text-xs sm:text-sm line-clamp-2 mb-1.5 hover:text-primary transition-colors leading-tight min-h-[2rem] sm:min-h-[2.5rem]">
             {product.name}
           </h3>
         </Link>
 
         {/* Rating */}
-        <div className="flex items-center gap-1.5 mb-2">
-          <div className="flex items-center gap-1 bg-amber-50 dark:bg-amber-500/10 px-1.5 py-0.5 rounded">
-            <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
-            <span className="text-xs font-semibold text-amber-700 dark:text-amber-400">{product.rating}</span>
-          </div>
-          <span className="text-[10px] text-muted-foreground">({product.reviews} reviews)</span>
+        <div className="flex items-center gap-1 mb-2">
+          <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
+          <span className="text-xs text-muted-foreground">{product.rating}</span>
+          <span className="text-[10px] text-muted-foreground">({product.reviews})</span>
         </div>
 
         {/* Price */}
-        <div className="flex flex-col gap-0.5 mb-3">
-          <span className="text-base md:text-lg font-bold text-foreground">
+        <div className="mb-2.5">
+          <span className="text-sm sm:text-base font-bold text-foreground">
             {formatPrice(product.price)}
           </span>
           {product.originalPrice && (
-            <span className="text-xs text-muted-foreground line-through">
+            <span className="text-[10px] sm:text-xs text-muted-foreground line-through ml-1.5">
               {formatPrice(product.originalPrice)}
             </span>
           )}
@@ -80,11 +69,11 @@ const ProductCard = ({ product, variant = 'default' }: ProductCardProps) => {
             e.preventDefault();
             addToCart(product);
           }}
-          className="w-full gap-2 h-9 text-xs font-semibold shadow-sm"
+          className="w-full gap-1.5 h-8 text-xs font-medium"
           size="sm"
         >
-          <ShoppingCart className="h-4 w-4" />
-          <span>Add to Cart</span>
+          <ShoppingCart className="h-3.5 w-3.5" />
+          Add to Cart
         </Button>
       </div>
     </div>

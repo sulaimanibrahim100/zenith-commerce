@@ -1,36 +1,37 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import LiveBanner from '@/components/home/LiveBanner';
-import CategorySlider from '@/components/home/CategorySlider';
-import DeliveryLocation from '@/components/home/DeliveryLocation';
-import HeroCarousel from '@/components/home/HeroCarousel';
+import HeroSection from '@/components/home/HeroSection';
+import TopCategories from '@/components/home/TopCategories';
 import HotDeals from '@/components/home/HotDeals';
 import TrendingProducts from '@/components/home/TrendingProducts';
+import FeaturedProducts from '@/components/home/FeaturedProducts';
+import DealsOfTheDay from '@/components/home/DealsOfTheDay';
 import PromoBanners from '@/components/home/PromoBanners';
-import TopCategories from '@/components/home/TopCategories';
 import ShopCarousel from '@/components/home/ShopCarousel';
+import AboutSection from '@/components/home/AboutSection';
 
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      {/* Navbar with top bar */}
+      {/* Live Banner */}
+      <LiveBanner variant="primary" />
+      
+      {/* Navbar */}
       <Navbar />
       
-      {/* Category Slider */}
-      <CategorySlider />
+      {/* Hero with Categories */}
+      <HeroSection />
       
-      {/* Delivery Location */}
-      <DeliveryLocation />
+      {/* Top Categories - Right below hero */}
+      <div className="container">
+        <TopCategories />
+      </div>
       
       <main className="flex-1">
-        <div className="container py-4 md:py-6">
-          {/* Hero Carousel */}
-          <HeroCarousel />
-          
+        <div className="container">
           {/* Live Banner */}
-          <div className="my-5 md:my-8">
-            <LiveBanner variant="primary" className="rounded-xl" />
-          </div>
+          <LiveBanner variant="secondary" className="rounded-lg my-4" />
           
           {/* Hot Deals */}
           <HotDeals />
@@ -41,12 +42,18 @@ const Index = () => {
           {/* Promo Banners */}
           <PromoBanners />
           
-          {/* Top Categories */}
-          <TopCategories />
+          {/* Featured Products */}
+          <FeaturedProducts />
+          
+          {/* Deals of the Day */}
+          <DealsOfTheDay />
         </div>
         
-        {/* Shop Carousel - Full width outside container */}
+        {/* Shop Carousel */}
         <ShopCarousel />
+        
+        {/* About Section - Before Footer */}
+        <AboutSection />
       </main>
       
       <Footer />
