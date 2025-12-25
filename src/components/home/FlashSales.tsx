@@ -6,9 +6,9 @@ import ProductCard from '@/components/product/ProductCard';
 
 const FlashSales = () => {
   const [timeLeft, setTimeLeft] = useState({
-    hours: 23,
-    minutes: 59,
-    seconds: 59,
+    hours: 2,
+    minutes: 58,
+    seconds: 17,
   });
 
   useEffect(() => {
@@ -29,47 +29,41 @@ const FlashSales = () => {
   }, []);
 
   return (
-    <section className="py-8">
-      <div className="flex items-center justify-between mb-6">
+    <div className="jumia-section">
+      {/* Header */}
+      <div className="jumia-section-header">
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 bg-primary text-primary-foreground px-3 py-1.5 rounded-lg">
-            <Zap className="h-5 w-5 fill-current" />
-            <span className="font-bold">Flash Sales</span>
+          <div className="flex items-center gap-1.5">
+            <Zap className="h-4 w-4 fill-current" />
+            <span className="jumia-section-title">Flash Sales</span>
           </div>
           
           {/* Countdown timer */}
-          <div className="flex items-center gap-1">
-            <span className="text-sm text-muted-foreground">Ends in:</span>
-            <div className="flex gap-1">
-              <span className="bg-foreground text-background text-sm font-bold px-2 py-1 rounded">
-                {String(timeLeft.hours).padStart(2, '0')}
-              </span>
-              <span className="text-foreground font-bold">:</span>
-              <span className="bg-foreground text-background text-sm font-bold px-2 py-1 rounded">
-                {String(timeLeft.minutes).padStart(2, '0')}
-              </span>
-              <span className="text-foreground font-bold">:</span>
-              <span className="bg-foreground text-background text-sm font-bold px-2 py-1 rounded">
-                {String(timeLeft.seconds).padStart(2, '0')}
-              </span>
-            </div>
+          <div className="flex items-center gap-1.5 text-xs">
+            <span className="opacity-80">Time Left:</span>
+            <span className="font-bold">
+              {String(timeLeft.hours).padStart(2, '0')}h : {String(timeLeft.minutes).padStart(2, '0')}m : {String(timeLeft.seconds).padStart(2, '0')}s
+            </span>
           </div>
         </div>
 
         <Link
           to="/products?flashsale=true"
-          className="flex items-center gap-1 text-primary font-medium hover:gap-2 transition-all"
+          className="flex items-center gap-1 text-xs font-medium hover:underline"
         >
-          See All <ChevronRight className="h-4 w-4" />
+          See All <ChevronRight className="h-3.5 w-3.5" />
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-        {flashSaleProducts.slice(0, 5).map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+      {/* Products - Horizontal scroll */}
+      <div className="p-2">
+        <div className="product-scroll">
+          {flashSaleProducts.slice(0, 8).map((product) => (
+            <ProductCard key={product.id} product={product} showStock />
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 
