@@ -3,6 +3,8 @@ import Footer from '@/components/layout/Footer';
 import LiveBanner from '@/components/home/LiveBanner';
 import HeroSection from '@/components/home/HeroSection';
 import TopCategories from '@/components/home/TopCategories';
+import CategoryBanners from '@/components/home/CategoryBanners';
+import FlashSales from '@/components/home/FlashSales';
 import HotDeals from '@/components/home/HotDeals';
 import TrendingProducts from '@/components/home/TrendingProducts';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
@@ -23,15 +25,19 @@ const Index = () => {
       {/* Hero with Categories */}
       <HeroSection />
       
-      {/* Top Categories - Right below hero */}
-      <div className="container">
-        <TopCategories />
-      </div>
-      
       <main className="flex-1">
         <div className="container">
-          {/* Live Banner */}
-          <LiveBanner variant="secondary" className="rounded-lg my-4" />
+          {/* Top Categories Icons */}
+          <TopCategories />
+          
+          {/* Category Banners Row */}
+          <CategoryBanners />
+          
+          {/* Flash Sales */}
+          <FlashSales />
+          
+          {/* Promo Banners */}
+          <PromoBanners />
           
           {/* Hot Deals */}
           <HotDeals />
@@ -39,14 +45,11 @@ const Index = () => {
           {/* Trending Products */}
           <TrendingProducts />
           
-          {/* Promo Banners */}
-          <PromoBanners />
-          
-          {/* Featured Products */}
-          <FeaturedProducts />
-          
           {/* Deals of the Day */}
           <DealsOfTheDay />
+          
+          {/* Featured Products Grid */}
+          <FeaturedProducts />
         </div>
         
         {/* Shop Carousel */}
