@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useAdminAuth } from '@/contexts/AdminAuthContext';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Loader2, Shield, Eye, EyeOff } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import logo from '@/assets/logo.png';
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAdminAuth } from "@/contexts/AdminAuthContext";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Loader2, Shield, Eye, EyeOff } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import logo from "@/assets/logo.png";
 
 const AdminLogin = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { login, isLoading, admin, isAdmin } = useAdminAuth();
@@ -18,7 +18,7 @@ const AdminLogin = () => {
   const location = useLocation();
   const { toast } = useToast();
 
-  const from = (location.state as any)?.from?.pathname || '/admin';
+  const from = (location.state as any)?.from?.pathname || "/admin";
 
   // Redirect if already logged in
   if (!isLoading && admin && isAdmin) {
@@ -28,12 +28,12 @@ const AdminLogin = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email || !password) {
       toast({
-        title: 'Error',
-        description: 'Please enter both email and password.',
-        variant: 'destructive',
+        title: "Error",
+        description: "Please enter both email and password.",
+        variant: "destructive",
       });
       return;
     }
@@ -44,15 +44,15 @@ const AdminLogin = () => {
 
     if (result.success) {
       toast({
-        title: 'Welcome back!',
-        description: 'You have successfully logged in.',
+        title: "Welcome back!",
+        description: "You have successfully logged in.",
       });
       navigate(from, { replace: true });
     } else {
       toast({
-        title: 'Login Failed',
+        title: "Login Failed",
         description: result.error,
-        variant: 'destructive',
+        variant: "destructive",
       });
     }
   };
@@ -70,7 +70,6 @@ const AdminLogin = () => {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <img src={logo} alt="Clarity Tech" className="h-12 w-auto mx-auto mb-4" />
           <div className="flex items-center justify-center gap-2 text-primary">
             <Shield className="h-5 w-5" />
             <span className="font-semibold">Admin Portal</span>
@@ -81,7 +80,9 @@ const AdminLogin = () => {
         <div className="bg-card rounded-xl shadow-xl border border-border p-8">
           <div className="text-center mb-6">
             <h1 className="text-2xl font-bold text-foreground">Welcome Back</h1>
-            <p className="text-muted-foreground mt-1">Sign in to access the admin dashboard</p>
+            <p className="text-muted-foreground mt-1">
+              Sign in to access the admin dashboard
+            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -103,7 +104,7 @@ const AdminLogin = () => {
               <div className="relative">
                 <Input
                   id="password"
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -115,7 +116,11 @@ const AdminLogin = () => {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 >
-                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
                 </button>
               </div>
             </div>
@@ -131,20 +136,22 @@ const AdminLogin = () => {
                   Signing in...
                 </>
               ) : (
-                'Sign In'
+                "Sign In"
               )}
             </Button>
           </form>
 
           <div className="mt-6 p-4 bg-muted/50 rounded-lg">
             <p className="text-xs text-muted-foreground text-center">
-              This is a secure admin area. Only authorized personnel can access this portal.
+              This is a secure admin area. Only authorized personnel can access
+              this portal.
             </p>
           </div>
         </div>
 
         <p className="text-center text-sm text-muted-foreground mt-6">
-          &copy; {new Date().getFullYear()} Clarity Tech Ltd. All rights reserved.
+          &copy; {new Date().getFullYear()} Clarity Tech Ltd. All rights
+          reserved.
         </p>
       </div>
     </div>

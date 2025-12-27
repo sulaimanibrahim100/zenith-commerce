@@ -1,13 +1,25 @@
-import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, Youtube, CreditCard, Truck, Shield, Headphones } from 'lucide-react';
-import logo from '@/assets/logo.png';
+import { Link } from "react-router-dom";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Facebook,
+  Twitter,
+  Instagram,
+  Youtube,
+  CreditCard,
+  Truck,
+  Shield,
+  Headphones,
+} from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   const features = [
-    { icon: Truck, title: 'Free Delivery', desc: 'On orders above ₦100k' },
-    { icon: Shield, title: 'Secure Payment', desc: '100% secure checkout' },
-    { icon: CreditCard, title: 'Easy Returns', desc: '7-day return policy' },
-    { icon: Headphones, title: '24/7 Support', desc: 'Dedicated support' },
+    { icon: Truck, title: "Free Delivery", desc: "On orders above ₦100k" },
+    { icon: Shield, title: "Secure Payment", desc: "100% secure checkout" },
+    { icon: CreditCard, title: "Easy Returns", desc: "7-day return policy" },
+    { icon: Headphones, title: "24/7 Support", desc: "Dedicated support" },
   ];
 
   return (
@@ -35,9 +47,14 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {/* About */}
           <div className="col-span-2 md:col-span-1">
-            <img src={logo} alt="Clarity Tech" className="h-10 w-auto mb-4 brightness-0 invert" />
+            <img
+              src={logo}
+              alt="Clarity Tech"
+              className="h-10 w-auto mb-4 brightness-0 invert"
+            />
             <p className="text-background/60 text-sm mb-4 leading-relaxed">
-              Your one-stop shop for all tech products. Quality gadgets at affordable prices.
+              Your one-stop shop for all tech products. Quality gadgets at
+              affordable prices.
             </p>
             <div className="flex gap-2">
               {[Facebook, Twitter, Instagram, Youtube].map((Icon, i) => (
@@ -56,7 +73,13 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-sm mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {['All Products', 'Laptops', 'Phones', 'Gaming', 'Accessories'].map((link) => (
+              {[
+                "All Products",
+                "Laptops",
+                "Phones",
+                "Gaming",
+                "Accessories",
+              ].map((link) => (
                 <li key={link}>
                   <Link
                     to={`/products?category=${link.toLowerCase()}`}
@@ -73,10 +96,16 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-sm mb-4">Customer Service</h3>
             <ul className="space-y-2">
-              {['Help Center', 'Returns', 'Shipping Info', 'FAQs', 'Track Order'].map((link) => (
+              {[
+                "Help Center",
+                "Returns",
+                "Shipping Info",
+                "FAQs",
+                "Track Order",
+              ].map((link) => (
                 <li key={link}>
                   <Link
-                    to={`/${link.toLowerCase().replace(' ', '-')}`}
+                    to={`/${link.toLowerCase().replace(" ", "-")}`}
                     className="text-background/60 hover:text-primary text-sm transition-colors"
                   >
                     {link}
@@ -108,11 +137,18 @@ const Footer = () => {
 
         <div className="border-t border-background/10 mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-background/40 text-xs">
-            © 2024 Clarity Tech. All rights reserved.
+            &copy; {new Date().getFullYear()} Clarity Tech. All rights reserved.
           </p>
           <div className="flex items-center gap-4 text-xs text-background/40">
-            <Link to="/privacy" className="hover:text-primary transition-colors">Privacy</Link>
-            <Link to="/terms" className="hover:text-primary transition-colors">Terms</Link>
+            <Link
+              to="/privacy"
+              className="hover:text-primary transition-colors"
+            >
+              Privacy
+            </Link>
+            <Link to="/terms" className="hover:text-primary transition-colors">
+              Terms
+            </Link>
           </div>
         </div>
       </div>

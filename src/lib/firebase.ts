@@ -1,17 +1,15 @@
-// Firebase Configuration
-// TODO: Replace with your Firebase config from console.firebase.google.com
-
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAqh569-vL4CzCZ0_bJ5l5D-MQmUF4C4uY",
+  authDomain: "shoptest-da3cf.firebaseapp.com",
+  projectId: "shoptest-da3cf",
+  storageBucket: "shoptest-da3cf.firebasestorage.app",
+  messagingSenderId: "1094186803165",
+  appId: "1:1094186803165:web:d4b84d2e9e079f4f786034",
+  measurementId: "G-QWN8YZ2LE8",
 };
 
 // Initialize Firebase
